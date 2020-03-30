@@ -49,10 +49,16 @@ Route::get('/cargos/export/csv', 'CargoController@exportcsv')->name('cargos.expo
 Route::get('/cargos/export/pdf', 'CargoController@exportpdf')->name('cargos.export.pdf');
 Route::resource('/cargos', 'CargoController');
 
-/* Especilidades */
+/* Especilidades não usado*/
 Route::get('/especialidades/export/csv', 'EspecialidadeController@exportcsv')->name('especialidades.export.csv');
 Route::get('/especialidades/export/pdf', 'EspecialidadeController@exportpdf')->name('especialidades.export.pdf');
 Route::resource('/especialidades', 'EspecialidadeController');
 
 
-Route::resource('/curriculo', 'CurriculoController')->only(['create', 'store',]);
+Route::resource('/curriculo', 'CurriculoController')->only(['create', 'store', 'show', 'index']);
+
+
+Route::get('/lista/export/csv', 'ListaController@exportcsv')->name('lista.export.csv');
+Route::get('/lista/export/pdf', 'ListaController@exportpdf')->name('lista.export.pdf');
+Route::get('/lista/export/pdf/{id}/individual', 'ListaController@exportpdfindividual')->name('lista.export.pdf.individual');
+Route::resource('/lista', 'ListaController')->only(['index', 'show', 'destroy']);

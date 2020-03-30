@@ -128,7 +128,7 @@
       </div> 
       <div class="form-row">
         <div class="form-group col-md-2">
-          <label for="cep">CEP Celular<strong  class="text-danger">(*)</strong></label>  
+          <label for="cep">CEP<strong  class="text-danger">(*)</strong></label>  
           <input type="text" class="form-control{{ $errors->has('cep') ? ' is-invalid' : '' }}" name="cep" id="cep" value="{{ old('cep') ?? '' }}">
           @if ($errors->has('cep'))
           <div class="invalid-feedback">
@@ -257,7 +257,6 @@
           </div>
         </div>
       </div>
-
       <div class="form-row">
         <div class="form-group col-md-7">
           <p>Disponibilidade Dias da Semana</p>
@@ -304,7 +303,6 @@
           @endif
         </div>
       </div>
-
       <div class="form-group">
         <label for="protadordoencas">É portador de doenças crônicas, tai como: diabetes, hipertensão, doença respiratória, cardiopatias, insuficiência renal crônica, imunossuprimidos, pacientes oncológicos?<strong  class="text-danger">(*)</strong></label>
           <select class="form-control {{ $errors->has('protadordoencas') ? ' is-invalid' : '' }}" name="protadordoencas" id="protadordoencas">
@@ -318,19 +316,16 @@
           </div>
           @endif
       </div>
-
       <div class="form-row">
         <div class="form-group col-md-6">  
-          <label for="qualdoenca">Caso seja portador de doença crônica listada anteriormente, digite quais?</strong></label>  
-          <input type="text" class="form-control" name="qualdoenca"value="{{ old('qualdoenca') ?? '' }}">
+          <label for="qualdoenca">Caso seja portador de doença crônica listada anteriormente, digite quais?</label>  
+          <input type="text" class="form-control" name="qualdoenca" value="{{ old('qualdoenca') ?? '' }}">
         </div>
         <div class="form-group col-md-6">  
           <label for="outrasdoenca">Possui outras doenças, quais?</label>  
           <input type="text" class="form-control" name="outrasdoenca" value="{{ old('outrasdoenca') ?? '' }}">
         </div>  
       </div>
-
-
       <div class="form-group">
         <label for="gestante">É gestante ou lactante?<strong  class="text-danger">(*)</strong></label>
           <select class="form-control {{ $errors->has('gestante') ? ' is-invalid' : '' }}" name="gestante" id="gestante">
@@ -344,8 +339,6 @@
           </div>
           @endif
       </div>
-
-
       <div class="form-group">
         <label for="temparente">Possui parente que trabalhe na Prefeitura Municipal de Contagem ocupante de cargo em comissão?<strong  class="text-danger">(*)</strong></label>
           <select class="form-control {{ $errors->has('temparente') ? ' is-invalid' : '' }}" name="temparente" id="temparente">
@@ -359,14 +352,10 @@
           </div>
           @endif
       </div>
-
-
       <div class="form-group">
-        <label for="qualdoenca">Caso tenho respondido sim na questão anterior, escreva o nome do servidor:</strong></label>  
-        <input type="text" class="form-control" name="qualdoenca"value="{{ old('qualdoenca') ?? '' }}"> 
+        <label for="nomeparente">Caso tenho respondido sim na questão anterior, escreva o nome do servidor:</strong></label>  
+        <input type="text" class="form-control" name="nomeparente" value="{{ old('nomeparente') ?? '' }}"> 
       </div>
-
-
       <div class="container bg-primary text-white">
         <p class="text-center">Anexo de Currículo</p>
       </div>
@@ -388,7 +377,6 @@
           </div>
         </div>  
       </div>
-
       <div class="form-group">
         <div class="alert alert-primary" role="alert">
           <div class="form-check form-check-inline">
@@ -396,17 +384,14 @@
             <label class="form-check-label" for="declaro"><strong>Declaro que as informações prestadas neste formulário eletrônico são verdadeiras, e assumo inteira responsabilidade pelas mesmas, estando ciente e concordando com às condições exigidas pela inscrição no Edital /CP Nº 01/2020 e me submentendo a todas às normas expressas neste.</strong></label>            
           </div>    
         </div>
-
         @if ($errors->has('declaro'))
         <div class="alert alert-danger" role="alert">
         <p><strong  class="text-danger">(!)</strong>{{ $errors->first('declaro') }}
         </div>
         @endif
       </div>
-
       <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> Enviar Currículo</button>
-    </div>  
-
+    </div>
   </div>
 @endsection
 

@@ -180,14 +180,40 @@ class CurriculoController extends Controller
         }
 
 
-        Curriculo::create($input); //salva
+        $newcurriculo = Curriculo::create($input); //salva
 
         Session::flash('create_curriculo', 'Currículo enviado com sucesso!');
 
         $cargos = Cargo::orderBy('id', 'asc')->get();
 
-        return redirect(route('curriculo.create'));
+        // return redirect(route('curriculo.create'));
 
+         return Redirect::route('curriculo.show', $newcurriculo->id);
+
+    }
+
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $curriculo = Curriculo::findOrFail($id);
+
+        return view('curriculos.show', compact('curriculo'));
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        abort(403, 'Acesso negado.');
     }
 
  

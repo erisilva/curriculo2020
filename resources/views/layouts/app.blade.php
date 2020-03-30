@@ -37,7 +37,7 @@
                 <ul class="navbar-nav mr-auto">
                     @if (!Auth::guest())
                     <li class="nav-item">
-                        <a class="nav-link" href="#">TO-DO</a>
+                        <a class="nav-link" href="{{ route('lista.index') }}">Currículos</a>
                     </li>
 
                     <li class="nav-item dropdown">
