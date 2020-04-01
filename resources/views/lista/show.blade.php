@@ -99,7 +99,7 @@
         </div> 
         <div class="form-group col-md-2">  
           <label for="uf">UF</label>  
-          <input type="text" class="form-control" name="uf" id="uf" value="{{ $curriculo->cidade }}" readonly>
+          <input type="text" class="form-control" name="uf" id="uf" value="{{ $curriculo->uf }}" readonly>
         </div>
       </div>
       <div class="form-row">
@@ -139,15 +139,15 @@
         <div class="form-group col-md-5">
           <p>Disponibilidade de Turno</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="turnomanha" id="turnomanha" value="s">
+            <input class="form-check-input" type="checkbox" name="turnomanha" id="turnomanha" value="s" {{ $curriculo->turnomanha == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="turnomanha">Manhã</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="turnotarde" id="turnotarde" value="s">
+            <input class="form-check-input" type="checkbox" name="turnotarde" id="turnotarde" value="s" {{ $curriculo->turnotarde == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="turnotarde">Tarde</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="turnonoite" id="turnonoite" value="s">
+            <input class="form-check-input" type="checkbox" name="turnonoite" id="turnonoite" value="s" {{ $curriculo->turnonoite == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="turnonoite">Noite</label>
           </div>
         </div>
@@ -157,31 +157,31 @@
         <div class="form-group col-md-7">
           <p>Disponibilidade Dias da Semana</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="seg" id="seg" value="s">
+            <input class="form-check-input" type="checkbox" name="seg" id="seg" value="s" {{ $curriculo->seg == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="seg">SEG</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="ter" id="ter" value="s">
+            <input class="form-check-input" type="checkbox" name="ter" id="ter" value="s" {{ $curriculo->ter == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="ter">TER</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="qua" id="qua" value="s">
+            <input class="form-check-input" type="checkbox" name="qua" id="qua" value="s" {{ $curriculo->qua == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="qua">QUA</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="qui" id="qui" value="s">
+            <input class="form-check-input" type="checkbox" name="qui" id="qui" value="s" {{ $curriculo->qui == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="qui">QUI</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="sex" id="sex" value="s">
+            <input class="form-check-input" type="checkbox" name="sex" id="sex" value="s" {{ $curriculo->sex == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="sex">SEX</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="sab" id="sab" value="s">
+            <input class="form-check-input" type="checkbox" name="sab" id="sab" value="s" {{ $curriculo->sab == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="sab">SAB</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="dom" id="dom" value="s">
+            <input class="form-check-input" type="checkbox" name="dom" id="dom" value="s" {{ $curriculo->dom == 's' ? 'checked' : '' }}>
             <label class="form-check-label" for="dom">DOM</label>
           </div>
         </div>
@@ -227,7 +227,7 @@
 
 
       <div class="form-group">
-        <a href="{{ $curriculo->arquivoUrl }}" target="_blank">Anexo</a>
+        <a class="btn btn-warning btn-sm" role="button" href="{{ $curriculo->arquivoUrl }}" target="_blank">Fazer Download do Currículo Anexado</a>
       </div>
 
 
@@ -236,6 +236,39 @@
         </div>
 
       </form>
+
+
+  <br>
+  <div class="container">
+    <a href="{{ route('lista.index') }}" class="btn btn-primary" role="button"><i class="fas fa-long-arrow-alt-left"></i> Voltar</i></a>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalLixeira"><i class="fas fa-trash-alt"></i> Enviar para Lixeira</button>
+  </div>
+  <div class="modal fade" id="modalLixeira" tabindex="-1" role="dialog" aria-labelledby="JanelaProfissional" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fas fa-question-circle"></i> Enviar Profissional para Lixeira</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert">
+            <p><strong>Atenção!</strong> Confirma enviar esse currículo para a lixeira?</p>
+            <h2>Confirma?</h2>
+          </div>
+          <form method="post" action="{{route('lista.destroy', $curriculo->id)}}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Enviar para Lixeira</button>
+          </form>
+        </div>     
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-window-close"></i> Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>      
 </div>
 
 @endsection

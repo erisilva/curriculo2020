@@ -225,34 +225,34 @@
         <div class="form-group col-md-7">
           <p>Disponibilidade de Carga Horária Semanal</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="c20h" id="c20h" value="s">
+            <input class="form-check-input" type="checkbox" name="c20h" id="c20h" value="s" {{ old("c20h") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="c20h">20h semanais</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="c24h" id="c24h" value="s">
+            <input class="form-check-input" type="checkbox" name="c24h" id="c24h" value="s" {{ old("c24h") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="c24h">24h semanais</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="c30h" id="c30h" value="s">
+            <input class="form-check-input" type="checkbox" name="c30h" id="c30h" value="s"  {{ old("c30h") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="c30h">30h semanais</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="c40h" id="c40h" value="s">
+            <input class="form-check-input" type="checkbox" name="c40h" id="c40h" value="s"  {{ old("c40h") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="c40h">40h semanais</label>
           </div>
         </div>
         <div class="form-group col-md-5">
           <p>Disponibilidade de Turno</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="turnomanha" id="turnomanha" value="s">
+            <input class="form-check-input" type="checkbox" name="turnomanha" id="turnomanha" value="s" {{ old("turnomanha") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="turnomanha">Manhã</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="turnotarde" id="turnotarde" value="s">
+            <input class="form-check-input" type="checkbox" name="turnotarde" id="turnotarde" value="s" {{ old("turnotarde") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="turnotarde">Tarde</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="turnonoite" id="turnonoite" value="s">
+            <input class="form-check-input" type="checkbox" name="turnonoite" id="turnonoite" value="s" {{ old("turnonoite") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="turnonoite">Noite</label>
           </div>
         </div>
@@ -261,31 +261,31 @@
         <div class="form-group col-md-7">
           <p>Disponibilidade Dias da Semana</p>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="seg" id="seg" value="s">
+            <input class="form-check-input" type="checkbox" name="seg" id="seg" value="s"  {{ old("seg") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="seg">SEG</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="ter" id="ter" value="s">
+            <input class="form-check-input" type="checkbox" name="ter" id="ter" value="s"  {{ old("ter") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="ter">TER</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="qua" id="qua" value="s">
+            <input class="form-check-input" type="checkbox" name="qua" id="qua" value="s"  {{ old("qua") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="qua">QUA</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="qui" id="qui" value="s">
+            <input class="form-check-input" type="checkbox" name="qui" id="qui" value="s"  {{ old("qui") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="qui">QUI</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="sex" id="sex" value="s">
+            <input class="form-check-input" type="checkbox" name="sex" id="sex" value="s"  {{ old("sex") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="sex">SEX</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="sab" id="sab" value="s">
+            <input class="form-check-input" type="checkbox" name="sab" id="sab" value="s"  {{ old("sab") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="sab">SAB</label>
           </div>
           <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="dom" id="dom" value="s">
+            <input class="form-check-input" type="checkbox" name="dom" id="dom" value="s" {{ old("dom") == "s" ? "checked":"" }}>
             <label class="form-check-label" for="dom">DOM</label>
           </div>
         </div>
@@ -294,7 +294,7 @@
           <select class="form-control {{ $errors->has('deficiente') ? ' is-invalid' : '' }}" name="deficiente" id="deficiente">
             <option value="" selected="true">Selecione ...</option>        
             <option value="s" {{ old("deficiente") == "s" ? "selected":"" }}>Sim</option>
-            <option value="n" {{ old("temparente") == "n" ? "selected":"" }}>Não</option>
+            <option value="n" {{ old("deficiente") == "n" ? "selected":"" }}>Não</option>
           </select>
           @if ($errors->has('deficiente'))
           <div class="invalid-feedback">
@@ -304,7 +304,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="protadordoencas">É portador de doenças crônicas, tai como: diabetes, hipertensão, doença respiratória, cardiopatias, insuficiência renal crônica, imunossuprimidos, pacientes oncológicos?<strong  class="text-danger">(*)</strong></label>
+        <label for="protadordoencas">É portador de doenças crônicas, tais como: diabetes, hipertensão, doença respiratória, cardiopatias, insuficiência renal crônica, imunossuprimidos, pacientes oncológicos?<strong  class="text-danger">(*)</strong></label>
           <select class="form-control {{ $errors->has('protadordoencas') ? ' is-invalid' : '' }}" name="protadordoencas" id="protadordoencas">
             <option value="" selected="true">Selecione ...</option>        
             <option value="s" {{ old("protadordoencas") == "s" ? "selected":"" }}>Sim</option>

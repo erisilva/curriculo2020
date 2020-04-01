@@ -57,7 +57,10 @@ Route::resource('/especialidades', 'EspecialidadeController');
 
 Route::resource('/curriculo', 'CurriculoController')->only(['create', 'store', 'show', 'index']);
 
-
+# lixeira
+Route::get('/lista/trash', 'ListaTrashController@index')->name('lista.trash');
+Route::get('/lista/trash/{id}', 'ListaTrashController@show')->name('lista.trash.show');
+Route::post('/lista/trash/{id}/restore', 'ListaTrashController@restore')->name('lista.trash.restore');
 Route::get('/lista/export/csv', 'ListaController@exportcsv')->name('lista.export.csv');
 Route::get('/lista/export/pdf', 'ListaController@exportpdf')->name('lista.export.pdf');
 Route::get('/lista/export/pdf/{id}/individual', 'ListaController@exportpdfindividual')->name('lista.export.pdf.individual');

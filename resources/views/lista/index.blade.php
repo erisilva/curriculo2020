@@ -8,6 +8,15 @@
     </ol>
   </nav>
 
+  @if(Session::has('deleted_curriculo'))
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Info!</strong>  {{ session('deleted_curriculo') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  @endif
+
   <div class="btn-group py-1" role="group" aria-label="Opções">
     <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modalFilter"><i class="fas fa-filter"></i> Filtrar</button>
     <div class="btn-group" role="group">
@@ -30,6 +39,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">CPF</th>
                 <th scope="col">Cargo</th>
+                <th scope="col">Cidade</th>
                 <th scope="col">Celular</th>
                 <th scope="col">E-mail</th>
                 <th scope="col"></th>
@@ -44,6 +54,7 @@
                 <td>{{ $curriculo->nome }}</td>
                 <td>{{ $curriculo->cpf }}</td>
                 <td>{{ $curriculo->cargo->descricao }}</td>
+                <td>{{ $curriculo->cidade }}</td>
                 <td>{{ $curriculo->cel1 }}</td>
                 <td>{{ $curriculo->email }}</td>
                 <td><a href="{{ $curriculo->arquivoUrl }}" target="_blank">Anexo</a></td>
@@ -66,7 +77,7 @@
   </div>
   <!-- Janela de filtragem da consulta -->
   <div class="modal fade" id="modalFilter" tabindex="-1" role="dialog" aria-labelledby="JanelaFiltro" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalCenterTitle"><i class="fas fa-filter"></i> Filtro</h5>
@@ -76,6 +87,36 @@
         </div>
         <div class="modal-body">
           <!-- Filtragem dos dados -->
+          <form method="GET" action="{{ route('lista.index') }}">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="codigo">Código</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" value="{{request()->input('codigo')}}">
+              </div>
+              <div class="form-group col-md-8">
+                <label for="nome">Nome do Candidato</label>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{request()->input('nome')}}">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-8">
+                <label for="cargo_id">Cargo</label>
+                <select class="form-control" name="cargo_id" id="cargo_id">
+                  <option value="">Mostrar todos</option>    
+                  @foreach($cargos as $cargo)
+                  <option value="{{$cargo->id}}" {{ ($cargo->id == request()->input('cargo_id')) ? ' selected' : '' }} >{{$cargo->descricao}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" value="{{request()->input('cidade')}}">
+              </div>
+            </div>  
+            <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i> Pesquisar</button>
+            <a href="{{ route('lista.index') }}" class="btn btn-primary btn-sm" role="button">Limpar</a>
+          </form>
+          <br>  
           <!-- Seleção de número de resultados por página -->
           <div class="form-group">
             <select class="form-control" name="perpage" id="perpage">
@@ -103,11 +144,25 @@ $(document).ready(function(){
     });
 
     $('#btnExportarCSV').on('click', function(){
-        window.open("{{ route('lista.export.csv') }}","_self");
+      var filtro_codigo = $('input[name="codigo"]').val();
+      var filtro_nome = $('input[name="nome"]').val();
+      var filtro_cidade = $('input[name="cidade"]').val();
+      var filtro_cargo_id = $('select[name="cargo_id"]').val();
+      if (typeof filtro_cargo_id === "undefined") {
+          filtro_cargo_id = "";
+      }
+      window.open("{{ route('lista.export.csv') }}" + "?codigo=" + filtro_codigo + "&nome=" + filtro_nome + "&cargo_id=" + filtro_cargo_id + "&cidade=" + filtro_cidade,"_self");
     });
 
     $('#btnExportarPDF').on('click', function(){
-        window.open("{{ route('lista.export.pdf') }}","_self");
+      var filtro_codigo = $('input[name="codigo"]').val();
+      var filtro_nome = $('input[name="nome"]').val();
+      var filtro_cidade = $('input[name="cidade"]').val();
+      var filtro_cargo_id = $('select[name="cargo_id"]').val();
+      if (typeof filtro_cargo_id === "undefined") {
+          filtro_cargo_id = "";
+      }
+      window.open("{{ route('lista.export.pdf') }}" + "?codigo=" + filtro_codigo + "&nome=" + filtro_nome + "&cargo_id=" + filtro_cargo_id + "&cidade=" + filtro_cidade,"_self");
     });
 }); 
 </script>
