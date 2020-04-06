@@ -416,7 +416,13 @@
       $("#cel2").inputmask({"mask": "(99) 99999-9999"});
       $("#cep").inputmask({"mask": "99.999-999"});
 
-
+      function limpa_formulario_cep() {
+          $("#logradouro").val("");
+          $("#bairro").val("");
+          $("#cidade").val("");
+          $("#uf").val("");
+      }
+      
       $("#cep").blur(function () {
           var cep = $(this).val().replace(/\D/g, '');
           if (cep != "") {
